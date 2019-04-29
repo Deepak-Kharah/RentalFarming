@@ -40,76 +40,46 @@
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item">
-                Buy
-            </a>
+    <div class="navbar-menu">
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        Rent
+        <div class="navbar-end">
+            {% if user.is_authenticated %}
+                {% if user.is_renter %}
+                    <a class="navbar-item" href="{% url 'tractor:my_tractor' %}" style="margin-right:5px;">
+                        <i style="margin-right:5px;" class="fas fa-tractor"></i>My Tractors
                     </a>
-                    <a class="navbar-item">
-                        Hire
-                    </a>
-                    <a class="navbar-item">
-                        Schemes
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        About
-                    </a>
-
-                </div>
-            </div>
-
-
-        </div>
-
-        {% if user.is_authenticated %}
-            <div class="navbar-end">
-            {% if user.is_renter %}
-                <a class="navbar-item" href="{% url 'tractor:my_tractor' %}" style="margin-right:5px;">
-                    <i style="margin-right:5px;" class="fas fa-tractor"></i>My Tractors
-                </a>
-            {% endif %}
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-arrowless" href="{% url 'user:profile' user.pk %}">
-                    <i class="fas fa-user is-small" style="margin-right:5px;"> </i>
-                    <span class="is-capitalized">
+                {% endif %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link is-arrowless" href="{% url 'user:profile' user.pk %}">
+                        <i class="fas fa-user is-small" style="margin-right:5px;"> </i>
+                        <span class="is-capitalized">
                             {% if request.user.userprofile.full_name %}
                                 {{ request.user.userprofile.full_name }}
                             {% else %}
                                 {{ request.user }}
                             {% endif %}
                     </span>
-                </a>
+                    </a>
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="{% url 'user:logout' %}">
-                        <i class="fas fa-sign-out-alt is-large" style="margin-right:5px;"> </i> Logout
-                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'user:logout' %}">
+                            <i class="fas fa-sign-out-alt is-large" style="margin-right:5px;"> </i> Logout
+                        </a>
+                    </div>
                 </div>
-            </div>
-        {% else %}
+            {% else %}
 
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" href="{% url 'user:register' %}">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light" href="{% url 'user:login' %}">
-                        Log in
-                    </a>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'user:register' %}">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light" href="{% url 'user:login' %}">
+                            Log in
+                        </a>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
         </div>
 
     </div>
