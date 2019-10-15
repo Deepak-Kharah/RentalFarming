@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
-allowed_exceptional_phone_number = (123,)
+allowed_exceptional_phone_number = ('123',) # NOTE: this must be a string
 
 
 def phone_number_length_validator(value):

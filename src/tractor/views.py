@@ -45,25 +45,17 @@ class TractorCreateView(LoginRequiredMixin, CreateView):
         return redirect('tractor:my_tractor')
 
 
-class TractorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class TractorUpdateView(LoginRequiredMixin, UpdateView):
     model = Tractor
     form_class = TractorCreationForm
     context_object_name = 'tractors'
 
-    def test_func(self):
-        if self.request.user == self.model.user:
-            return True
-        return False
 
 
-class TractorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class TractorDeleteView(LoginRequiredMixin, DeleteView):
     model = Tractor
     success_url = reverse_lazy('tractor:my_tractor')
 
-    def test_func(self):
-        if self.request.user == self.model.user:
-            return True
-        return False
 
 
 class Checkout(LoginRequiredMixin, View):

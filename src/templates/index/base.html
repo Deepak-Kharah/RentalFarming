@@ -25,40 +25,40 @@
 </head>
 
 <body>
-<!-- NAVBAR -->
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item has-text-primary" href='{% url 'index:index' %}'>
-            <strong><i class="fas fa-tractor"></i> KH-e-TI</strong>
-        </a>
+    <!-- NAVBAR -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item has-text-primary" href="{% url 'index:index' %}">
+                <strong><i class="fas fa-tractor"></i> KH-e-TI</strong>
+            </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-    <div class="navbar-menu">
+        <div class="navbar-menu">
 
-        <div class="navbar-end">
-            {% if user.is_authenticated %}
+            <div class="navbar-end">
+                {% if user.is_authenticated %}
                 {% if user.is_renter %}
-                    <a class="navbar-item" href="{% url 'tractor:my_tractor' %}" style="margin-right:5px;">
-                        <i style="margin-right:5px;" class="fas fa-tractor"></i>My Tractors
-                    </a>
+                <a class="navbar-item" href="{% url 'tractor:my_tractor' %}" style="margin-right:5px;">
+                    <i style="margin-right:5px;" class="fas fa-tractor"></i>My Tractors
+                </a>
                 {% endif %}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link is-arrowless" href="{% url 'user:profile' user.pk %}">
                         <i class="fas fa-user is-small" style="margin-right:5px;"> </i>
                         <span class="is-capitalized">
                             {% if request.user.userprofile.full_name %}
-                                {{ request.user.userprofile.full_name }}
+                            {{ request.user.userprofile.full_name }}
                             {% else %}
-                                {{ request.user }}
+                            &nbsp; &nbsp; &nbsp; {{ request.user }}
                             {% endif %}
-                    </span>
+                        </span>
                     </a>
 
                     <div class="navbar-dropdown">
@@ -67,7 +67,7 @@
                         </a>
                     </div>
                 </div>
-            {% else %}
+                {% else %}
 
                 <div class="navbar-item">
                     <div class="buttons">
@@ -79,35 +79,35 @@
                         </a>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
+            </div>
+
         </div>
 
-    </div>
-
-</nav>
-{% if messages %}
+    </nav>
+    {% if messages %}
     {% for message in messages %}
-        {% if message.tags == 'success' %}
-            <article class="message is-success is-small">
-                <div class="message-body">{{ message }}</div>
-            </article>
-        {% elif message.tags == 'error' %}
-            <article class="message is-danger is-small">
-                <div class="message-body">{{ message }}</div>
-            </article>
-        {% elif message.tags == 'warning' %}
-            <article class="message is-warning is-small">
-                <div class="message-body has-text-warning"><i class="icon far fa-triangle"></i> {{ message }}</div>
-            </article>
-        {% elif message.tags == 'info' %}
-            <article class="message is-info is-small">
-                <div class="message-body">{{ message }}</div>
-            </article>
-        {% endif %}
+    {% if message.tags == 'success' %}
+    <article class="message is-success is-small">
+        <div class="message-body">{{ message }}</div>
+    </article>
+    {% elif message.tags == 'error' %}
+    <article class="message is-danger is-small">
+        <div class="message-body">{{ message }}</div>
+    </article>
+    {% elif message.tags == 'warning' %}
+    <article class="message is-warning is-small">
+        <div class="message-body has-text-warning"><i class="icon far fa-triangle"></i> {{ message }}</div>
+    </article>
+    {% elif message.tags == 'info' %}
+    <article class="message is-info is-small">
+        <div class="message-body">{{ message }}</div>
+    </article>
+    {% endif %}
     {% endfor %}
-{% endif %}
-{% block body %}
-{% endblock %}
+    {% endif %}
+    {% block body %}
+    {% endblock %}
 </body>
 
 <script>
