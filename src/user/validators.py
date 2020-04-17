@@ -1,11 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+allowed_exceptional_phone_number = ('123',) # NOTE: this must be a string
+
 
 def phone_number_length_validator(value):
-    if not str(value).isdigit() or (len(str(value)) != 10 and str(value) != '123'):
+    if not str(value).isdigit() or (len(str(value)) != 10 and str(value) not in allowed_exceptional_phone_number):
         raise ValidationError(_('Phone number is not valid.'))
-
-    if len(str(value)) != 10:
-        if str(value) != '123':
-            raise ValidationError(_('Phone number is not valid.'))
